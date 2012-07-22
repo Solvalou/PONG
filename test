@@ -1,0 +1,221 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.5 " "(v0_9_5)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x2652fb0 .scope module, "test" "test" 2 4;
+ .timescale 0 0;
+v0x26710d0_0 .var "clk", 0 0;
+v0x2671180_0 .net "hblank", 0 0, v0x2670e70_0; 1 drivers
+v0x2671230_0 .net "hreset", 0 0, v0x2670f20_0; 1 drivers
+v0x26712b0_0 .net "hsync", 0 0, v0x2670fd0_0; 1 drivers
+v0x2671360_0 .var "reset", 0 0;
+v0x2671430_0 .net "vblank", 0 0, v0x2670910_0; 1 drivers
+v0x26714f0_0 .net "vreset", 0 0, v0x2670990_0; 1 drivers
+v0x2671570_0 .net "vsync", 0 0, v0x2670870_0; 1 drivers
+S_0x2670ac0 .scope module, "h1" "hsync" 2 8, 3 4, S_0x2652fb0;
+ .timescale 0 0;
+v0x2670c70_0 .net *"_s2", 0 0, L_0x2671670; 1 drivers
+v0x2670d30_0 .net "clk", 0 0, v0x26710d0_0; 1 drivers
+v0x2670dd0_0 .var "count", 8 0;
+v0x2670e70_0 .var "hblank", 0 0;
+v0x2670f20_0 .var "hreset", 0 0;
+v0x2670fd0_0 .var "hsync", 0 0;
+v0x2671050_0 .net "reset", 0 0, v0x2671360_0; 1 drivers
+E_0x266fdb0 .event posedge, v0x2670d30_0;
+E_0x2670bd0 .event negedge, v0x2670d30_0;
+E_0x2670c20 .event edge, L_0x2671670;
+L_0x2671670 .reduce/nor v0x2671360_0;
+S_0x26530a0 .scope module, "v1" "vsync" 2 9, 4 4, S_0x2652fb0;
+ .timescale 0 0;
+L_0x2670210 .functor AND 1, v0x2670910_0, L_0x2671d70, C4<1>, C4<1>;
+L_0x26722b0 .functor AND 1, v0x2670910_0, L_0x2672170, C4<1>, C4<1>;
+v0x2658dd0_0 .net *"_s10", 0 0, C4<0>; 1 drivers
+v0x266fbf0_0 .net *"_s11", 9 0, C4<0000010000>; 1 drivers
+v0x266fc90_0 .net *"_s13", 0 0, L_0x2671a10; 1 drivers
+v0x266fd30_0 .net *"_s17", 9 0, L_0x2671b80; 1 drivers
+v0x266fde0_0 .net *"_s2", 0 0, L_0x2671740; 1 drivers
+v0x266fe80_0 .net *"_s20", 0 0, C4<0>; 1 drivers
+v0x266ff60_0 .net *"_s21", 9 0, C4<0000000100>; 1 drivers
+v0x2670000_0 .net *"_s23", 0 0, L_0x2671d70; 1 drivers
+v0x26700f0_0 .net *"_s25", 0 0, L_0x2670210; 1 drivers
+v0x2670190_0 .net *"_s29", 9 0, L_0x2671f80; 1 drivers
+v0x2670290_0 .net *"_s32", 0 0, C4<0>; 1 drivers
+v0x2670330_0 .net *"_s33", 9 0, C4<0000001000>; 1 drivers
+v0x2670440_0 .net *"_s35", 0 0, L_0x2672170; 1 drivers
+v0x26704e0_0 .net *"_s37", 0 0, L_0x26722b0; 1 drivers
+v0x2670600_0 .net *"_s7", 9 0, L_0x26718a0; 1 drivers
+v0x26706a0_0 .alias "clk", 0 0, v0x2671230_0;
+v0x2670560_0 .var "count", 8 0;
+v0x26707f0_0 .alias "reset", 0 0, v0x2671050_0;
+v0x2670910_0 .var "vblank", 0 0;
+v0x2670990_0 .var "vreset", 0 0;
+v0x2670870_0 .var "vsync", 0 0;
+E_0x26561d0 .event edge, L_0x26722b0;
+E_0x2653430 .event edge, L_0x2670210;
+E_0x26475e0 .event edge, L_0x2671a10;
+E_0x2653190 .event negedge, v0x26706a0_0;
+E_0x26569c0 .event edge, L_0x2671740;
+L_0x2671740 .reduce/nor v0x2671360_0;
+L_0x26718a0 .concat [ 9 1 0 0], v0x2670560_0, C4<0>;
+L_0x2671a10 .cmp/eq 10, L_0x26718a0, C4<0000010000>;
+L_0x2671b80 .concat [ 9 1 0 0], v0x2670560_0, C4<0>;
+L_0x2671d70 .cmp/eq 10, L_0x2671b80, C4<0000000100>;
+L_0x2671f80 .concat [ 9 1 0 0], v0x2670560_0, C4<0>;
+L_0x2672170 .cmp/eq 10, L_0x2671f80, C4<0000001000>;
+    .scope S_0x2670ac0;
+T_0 ;
+    %wait E_0x2670c20;
+    %ix/load 0, 9, 0;
+    %assign/v0 v0x2670dd0_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670f20_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670e70_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670fd0_0, 0, 0;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_0x2670ac0;
+T_1 ;
+    %wait E_0x2670bd0;
+    %load/v 8, v0x2670dd0_0, 9;
+    %mov 17, 0, 23;
+    %addi 8, 1, 32;
+    %ix/load 0, 9, 0;
+    %assign/v0 v0x2670dd0_0, 0, 8;
+    %load/v 8, v0x2670e70_0, 1;
+    %ix/load 1, 5, 0;
+    %mov 4, 0, 1;
+    %jmp/1 T_1.0, 4;
+    %load/x1p 9, v0x2670dd0_0, 1;
+    %jmp T_1.1;
+T_1.0 ;
+    %mov 9, 2, 1;
+T_1.1 ;
+; Save base=9 wid=1 in lookaside.
+    %and 8, 9, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670fd0_0, 0, 8;
+    %jmp T_1;
+    .thread T_1;
+    .scope S_0x2670ac0;
+T_2 ;
+    %wait E_0x266fdb0;
+    %load/v 8, v0x2670dd0_0, 9;
+    %mov 17, 0, 2;
+    %cmpi/u 8, 455, 11;
+    %jmp/0xz  T_2.0, 4;
+    %ix/load 0, 9, 0;
+    %assign/v0 v0x2670dd0_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670f20_0, 0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670e70_0, 0, 1;
+    %jmp T_2.1;
+T_2.0 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670f20_0, 0, 0;
+T_2.1 ;
+    %load/v 8, v0x2670dd0_0, 9;
+    %mov 17, 0, 1;
+    %cmpi/u 8, 81, 10;
+    %jmp/0xz  T_2.2, 4;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670e70_0, 0, 0;
+T_2.2 ;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_0x26530a0;
+T_3 ;
+    %wait E_0x26569c0;
+    %ix/load 0, 9, 0;
+    %assign/v0 v0x2670560_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670990_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670910_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670870_0, 0, 0;
+    %jmp T_3;
+    .thread T_3, $push;
+    .scope S_0x26530a0;
+T_4 ;
+    %wait E_0x2653190;
+    %load/v 8, v0x2670560_0, 9;
+    %mov 17, 0, 23;
+    %addi 8, 1, 32;
+    %ix/load 0, 9, 0;
+    %assign/v0 v0x2670560_0, 0, 8;
+    %load/v 8, v0x2670560_0, 9;
+    %mov 17, 0, 2;
+    %cmpi/u 8, 262, 11;
+    %jmp/0xz  T_4.0, 4;
+    %ix/load 0, 9, 0;
+    %assign/v0 v0x2670560_0, 0, 0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670990_0, 0, 1;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670910_0, 0, 1;
+    %jmp T_4.1;
+T_4.0 ;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670990_0, 0, 0;
+T_4.1 ;
+    %jmp T_4;
+    .thread T_4;
+    .scope S_0x26530a0;
+T_5 ;
+    %wait E_0x26475e0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670910_0, 0, 0;
+    %jmp T_5;
+    .thread T_5, $push;
+    .scope S_0x26530a0;
+T_6 ;
+    %wait E_0x2653430;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670870_0, 0, 1;
+    %jmp T_6;
+    .thread T_6, $push;
+    .scope S_0x26530a0;
+T_7 ;
+    %wait E_0x26561d0;
+    %ix/load 0, 1, 0;
+    %assign/v0 v0x2670870_0, 0, 0;
+    %jmp T_7;
+    .thread T_7, $push;
+    .scope S_0x2652fb0;
+T_8 ;
+    %set/v v0x26710d0_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0x2671360_0, 0, 1;
+    %delay 1, 0;
+    %set/v v0x2671360_0, 1, 1;
+    %delay 1, 0;
+    %vpi_call 2 18 "$dumpfile", "test.vcd";
+    %vpi_call 2 19 "$dumpvars", 1'sb0, S_0x2652fb0;
+    %end;
+    .thread T_8;
+    .scope S_0x2652fb0;
+T_9 ;
+    %delay 1, 0;
+    %load/v 8, v0x26710d0_0, 1;
+    %inv 8, 1;
+    %set/v v0x26710d0_0, 8, 1;
+    %jmp T_9;
+    .thread T_9;
+    .scope S_0x2652fb0;
+T_10 ;
+    %delay 1000000, 0;
+    %vpi_call 2 26 "$finish";
+    %end;
+    .thread T_10;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "test.v";
+    "./hsync.v";
+    "./vsync.v";
